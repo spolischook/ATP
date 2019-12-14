@@ -4,13 +4,13 @@
 відкриває безліч можливостей, таких як 
 віддалений моніторинг даних датчиків, управління роботами, домашня автоматизація та інше. 
 І коли справа зводиться до недорогих, але надійних двосторонніх радіочастотних рішень, є декілька варіантів:
-- ZeegBee - ліцензований протокол https://web.archive.org/web/20100216234546/http://freaklabs.org/index.php/Blog/Zigbee/Zigbee-Linux-and-the-GPL.html, лідер ринку IoT комунікацій
-- nRF24L01 - Nordic Semiconductor https://www.nordicsemi.com/Products/Low-power-short-range-wireless/nRF24-series
+- ZeegBee - [ліцензований протокол](https://web.archive.org/web/20100216234546/http://freaklabs.org/index.php/Blog/Zigbee/Zigbee-Linux-and-the-GPL.html), лідер ринку IoT комунікацій
+- nRF24L01 - [Nordic Semiconductor](https://www.nordicsemi.com/Products/Low-power-short-range-wireless/nRF24-series)
 - Bluetooth
 - WiFi
 
 Модуль трансивера nRF24L01 + (плюс) часто можна отримати в Інтернеті 
-за менше одного долара США https://ru.aliexpress.com/wholesale?SearchText=nrf24l01, 
+за [менше одного долара США](https://ru.aliexpress.com/wholesale?SearchText=nrf24l01), 
 що робить його одним з найдешевших варіантів передачі даних, які є сьогодні на ринку. 
 І найкраще, що ці модулі є надзвичайно крихітними, що дозволяє включати бездротовий інтерфейс майже в будь-який проект.
 
