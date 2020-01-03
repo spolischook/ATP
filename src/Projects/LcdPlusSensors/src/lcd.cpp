@@ -39,7 +39,7 @@ void printDataToLcd(data data, LiquidCrystal lcd) {
 }
 
 bool isDataChanged(data dataState, data dataLCD) {
-  if (dataState.photo != dataLCD.photo) return true;
+  if (strcmp(dataState.photo, dataLCD.photo) != 0) return true;
   return false;
 }
 
@@ -61,4 +61,10 @@ void setup() {
 }
 
 void loop() {
+  if (isDataChanged(dataState, dataLCD)) {
+    printDataToLcd(dataState, lcd);
+    dataLCD = dataState;
+  }
+
+  sprintf(dataState.photo, "555");
 }
