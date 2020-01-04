@@ -35,9 +35,8 @@ void loop() {
     buttonState = true;
     isTone = !isTone;
   } 
-  if(!digitalRead(BUTTON) && buttonState) {
+  if (!digitalRead(BUTTON) && buttonState) {
     buttonState = false;
   }
-  // Serial.println(analogValue);
-//  delay(10);
+
 }
