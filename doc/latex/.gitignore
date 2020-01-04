@@ -1,6 +1,7 @@
 *.aux
 *.log
 *.toc
+*.out
 *.pygtex
 *.pygstyle
 /include/*
