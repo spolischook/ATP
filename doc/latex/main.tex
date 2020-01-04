@@ -1,0 +1,110 @@
+\documentclass[14pt,a4paper]{extarticle}
+\usepackage{minted,xcolor}
+\usemintedstyle{manni}
+\definecolor{bg}{HTML}{ffffff}
+\usepackage{mathtext}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage[T1,T2A]{fontenc}
+\usepackage[utf8x]{inputenc}
+\usepackage[english,ukrainian]{babel}
+\usepackage[a4paper, total={7in, 9.5in}]{geometry}
+
+\usepackage{listings}
+\usepackage{lipsum}
+\usepackage{hyperref}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{pdfpages}
+\usepackage{fancyhdr}
+\usepackage{shading}
+
+\makeatletter
+\def\maxwidth#1{\ifdim\Gin@nat@width>#1 #1\else\Gin@nat@width\fi}
+\makeatother
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Бездротовий зв'язок NRF24L01+}
+\lhead{Автоматизація Технологічних Процесів}
+\fancyfoot[CE,CO]{\rightmark}
+\fancyfoot[LE,RO]{\thepage}
+\renewcommand{\headrulewidth}{2pt}
+\renewcommand{\footrulewidth}{1pt}
+
+\title{Бездротовий зв'язок модулів NRF24L01}
+\selectlanguage{ukrainian}
+\author{Сергій Поліщук}
+\date{2020/01/03}
+\selectlanguage{english}
+
+% Pandoc syntax highlighting
+% See https://github.com/rstudio/rticles/issues/182
+\usepackage{fancyvrb}
+\newcommand{\passthrough}[1]{\lstset{mathescape=false}#1\lstset{mathescape=true}}
+\usepackage{minted}
+\begin{document}
+
+\maketitle
+\tableofcontents
+\clearpage
+\section{Вступ}
+Наявність двох або більше плат Arduino, здатних спілкуватися між собою
+бездротово на відстані, відкриває безліч можливостей, таких як
+віддалений моніторинг даних датчиків, управління роботами, домашня
+автоматизація та інше. І коли справа зводиться до недорогих, але
+надійних двосторонніх радіочастотних рішень, є декілька варіантів:
+\begin{itemize}
+\item ZeegBee -
+\href{https://web.archive.org/web/20100216234546/http://freaklabs.org/index.php/Blog/Zigbee/Zigbee-Linux-and-the-GPL.html}{ліцензований
+протокол}, лідер ринку IoT комунікацій
+\item nRF24L01 -
+\href{https://www.nordicsemi.com/Products/Low-power-short-range-wireless/nRF24-series}{Nordic
+Semiconductor}
+\item Bluetooth
+\item WiFi
+\end{itemize}
+
+Модуль трансивера nRF24L01 + (плюс) часто можна отримати в Інтернеті за
+\href{https://ru.aliexpress.com/wholesale?SearchText=nrf24l01}{менше
+одного долара США}, що робить його одним з найдешевших варіантів радіо
+передачі даних, які є сьогодні на ринку. І найкраще, що ці модулі є
+надзвичайно крихітними, що дозволяє включати бездротовий інтерфейс майже
+в будь-який проект.
+
+Усі приклади робочих проектів виконані за допомогою
+\href{https://code.visualstudio.com/}{Visual Studio Code}
+та \href{https://platformio.org/}{PlatformIO}  
+Документаця написана за допомогою CLion (student license)
+разом з Markdown плагіном.  
+Таблиці BOM конвертовані онлайн сервісом \href{https://www.convertcsv.com/csv-to-markdown.htm}{ConverCSV}  
+Усі схеми розроблено у \href{https://easyeda.com/}{EasyEDA} під ліценцією MIT  
+Друкована документація зібрана \href{https://pandoc.org/}{PanDoc}
+
+Внесення змін до документації або коду через систему контролю
+версій Git за адресою
+\href{https://github.com/spolischook/ATP}{https://github.com/spolischook/ATP}
+
+
+\clearpage
+
+\input{include/theory.tex}
+\clearpage
+\section{Модулі}
+
+\input{include/modules/07-ArduinoNano-RF24L01-LCD.tex}
+\clearpage
+\input{include/modules/03-photoresistor.tex}
+\clearpage
+\input{include/modules/04-termistor.tex}
+\clearpage
+\input{include/modules/05-ArduinoNano-RF24L01-relay.tex}
+\clearpage
+\section{Проект комунікації модулів}
+
+\end{document}

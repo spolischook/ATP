@@ -8,16 +8,21 @@
 
 Усі приклади робочих проектів виконані за допомогою
 [Visual Studio Code](https://code.visualstudio.com/)
-та [PlatformIO](https://platformio.org/)
+та [PlatformIO](https://platformio.org/)  
+Документаця написана за допомогою CLion (student license)
+разом з Markdown плагіном.  
+Таблиці BOM конвертовані онлайн сервісом [ConverCSV](https://www.convertcsv.com/csv-to-markdown.htm)  
+Усі схеми розроблено у [EasyEDA](https://easyeda.com/) під ліценцією MIT  
+Друкована документація зібрана [PanDoc](https://pandoc.org/) 
 
 ## Модулі
 
-- Модуль з buttons+led
-- PIR модуль
+- Модуль з екраном
 - Фоторезистивний модуль + сирена
 - Терморезистивний модуль
 - Модуль з реллє
-- Модуль з екраном
+- PIR модуль
+- RfId модуль
 
 ## Проекти
 
