@@ -10,13 +10,13 @@
 #define BUTTON 8
 #define TERMISTOR 0
 
-#define DIRR_TERMO_LCD 01101
+#define DIRR_TERMO_LCD 01001
 #define DIRR_LCD_TERMO 00001
 
 RF24 radio(9, 10); // CE, CSN
 int tSensorPin = A0;
 int t;
-unsigned long lastUpdate;
+unsigned long lastUpdate = 0;
 
 struct address {
   byte lcd[6];
@@ -24,30 +24,36 @@ struct address {
   byte photo[6];
   byte relay[6];
 };
-address moduleAdresses = {"00001", "00002", "00003", "00004"};
-
-void setup() {
-  Serial.begin(9600);
-  
-
+void setupRadioAddresses(RF24 radio) {
+  radio.openReadingPipe(1, DIRR_LCD_TERMO);
+  radio.openWritingPipe(DIRR_TERMO_LCD);
+}
+void setupRadio(RF24 radio) {
   radio.begin();
   radio.setPALevel(RF24_PA_MIN);
   radio.setDataRate(RF24_250KBPS);
-  radio.openWritingPipe(DIRR_TERMO_LCD);
-  radio.openReadingPipe(1, DIRR_LCD_TERMO);
+  setupRadioAddresses(radio);
   radio.startListening();
   radio.setRetries(15, 15);
   radio.setChannel(120);
-
-  Serial.print("Is Chip connected: "); Serial.println(radio.isChipConnected());
 }
-
 bool isUpdateNeeded() {
   if (t != analogRead(tSensorPin)) return true;
   if (1000 < lastUpdate-millis())  return true;
   return false;
 }
 
+// ----------------
+// Rady, stady, go!
+// ----------------
+
+void setup() {
+  Serial.begin(9600);
+  
+  setupRadio(radio);
+
+  Serial.print("Is Chip connected: "); Serial.println(radio.isChipConnected());
+}
 void loop() {
   if (isUpdateNeeded()) {
     t = analogRead(tSensorPin);
