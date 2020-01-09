@@ -7,7 +7,7 @@ https://easyeda.com/spolischook/nrf24l01-arduinonano_termistor
 
 ![схема підключення](doc/images/Schematic_NRF24L01+ArduinoNano_2raly_NRF24L01+ArduinoNano_relay.png)
 
-### BOM
+### Список елементів модуля (BOM, bill of materials)
 
 |ID |Name         |Designator         |Quantity|
 |---|-------------|-------------------|--------|

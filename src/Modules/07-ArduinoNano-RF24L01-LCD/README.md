@@ -7,7 +7,7 @@ https://easyeda.com/spolischook/nrf24l01-arduinonano-lcd
 
 ![schematic](doc/images/Schematic_NRF24L01+arduinoNano+LCD_NRF24L01+ArduinoNano_LCD.png)
 
-### BOM
+### Список елементів модуля (BOM, bill of materials)
 
 |ID |Name         |Designator         |Quantity|
 |---|-------------|-------------------|--------|

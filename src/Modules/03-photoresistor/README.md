@@ -7,7 +7,7 @@ https://easyeda.com/spolischook/nrf24l01-arduino-nano-zoom-photoresistor
 
 ![schema](doc/images/Schematic_NRF24L01+arduinoNano_zoom_photoresistor.png)
 
-### BOM
+### Список елементів модуля (BOM, bill of materials)
 
 |ID |Name         |Designator         |Quantity|
 |---|-------------|-------------------|--------|
