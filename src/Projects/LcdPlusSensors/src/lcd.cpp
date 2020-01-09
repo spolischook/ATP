@@ -9,12 +9,12 @@ uint8_t READ_CURRENT_PIPE;
 uint8_t READ_TERMO_PIPE=1;
 uint8_t READ_PHOTO_PIPE=2;
 uint8_t READ_RELAY_PIPE=3;
-#define DIRR_LCD_TERMO 00001
-#define DIRR_LCD_PHOTO 00002
-#define DIRR_LCD_RELAY 00003
-#define DIRR_TERMO_LCD 01001
-#define DIRR_PHOTO_LCD 01002
-#define DIRR_RALAY_LCD 01003
+#define DIR_LCD_TERMO 00001
+#define DIR_LCD_PHOTO 00002
+#define DIR_LCD_RELAY 00003
+#define DIR_TERMO_LCD 01001
+#define DIR_PHOTO_LCD 01002
+#define DIR_RALAY_LCD 01003
 
 static const uint8_t BUTTON1 = A3;
 static const uint8_t BUTTON2 = A2;
@@ -62,9 +62,9 @@ bool isDataChanged(LiquidCrystal lcd, data dataState, data dataLCD) {
   return false;
 }
 void setupRadioAddresses(RF24 radio) {
-  radio.openReadingPipe(READ_TERMO_PIPE, DIRR_TERMO_LCD);
-  radio.openReadingPipe(READ_PHOTO_PIPE, DIRR_PHOTO_LCD);
-  radio.openReadingPipe(READ_RELAY_PIPE, DIRR_RALAY_LCD);
+  radio.openReadingPipe(READ_TERMO_PIPE, DIR_TERMO_LCD);
+  radio.openReadingPipe(READ_PHOTO_PIPE, DIR_PHOTO_LCD);
+  radio.openReadingPipe(READ_RELAY_PIPE, DIR_RALAY_LCD);
 }
 void setupRadio(RF24 radio) {
   radio.begin();
@@ -102,7 +102,7 @@ bool isButtonTurnedOff(uint8_t button) {
 }
 void sendComToRelay(RF24 radio, bool * relayState) {
   radio.stopListening();
-  radio.openWritingPipe(DIRR_LCD_RELAY);
+  radio.openWritingPipe(DIR_LCD_RELAY);
   char com[7];
   sprintf(com, "COM%.1d%.1d", relayState[0], relayState[1]);
   radio.write(com, 7);
@@ -110,7 +110,7 @@ void sendComToRelay(RF24 radio, bool * relayState) {
 }
 void getRelayStatus(RF24 radio) {
   radio.stopListening();
-  radio.openWritingPipe(DIRR_LCD_RELAY);
+  radio.openWritingPipe(DIR_LCD_RELAY);
   radio.write("GET", 3);
   radio.startListening();
 }
@@ -133,7 +133,7 @@ void handleRelayPipe() {
   }
   if (method.equals("GET")) {
     radio.stopListening();
-    radio.openWritingPipe(DIRR_LCD_RELAY);
+    radio.openWritingPipe(DIR_LCD_RELAY);
     char com[5];
     sprintf(com, "COM%.1d%.1d", relayState[0], relayState[1]);
     bool result = radio.write(com, 5);

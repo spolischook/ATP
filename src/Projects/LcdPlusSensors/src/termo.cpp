@@ -10,8 +10,8 @@
 #define BUTTON 8
 #define TERMISTOR 0
 
-#define DIRR_TERMO_LCD 01001
-#define DIRR_LCD_TERMO 00001
+#define DIR_TERMO_LCD 01001
+#define DIR_LCD_TERMO 00001
 
 RF24 radio(9, 10); // CE, CSN
 int tSensorPin = A0;
@@ -25,8 +25,8 @@ struct address {
   byte relay[6];
 };
 void setupRadioAddresses(RF24 radio) {
-  radio.openReadingPipe(1, DIRR_LCD_TERMO);
-  radio.openWritingPipe(DIRR_TERMO_LCD);
+  radio.openReadingPipe(1, DIR_LCD_TERMO);
+  radio.openWritingPipe(DIR_TERMO_LCD);
 }
 void setupRadio(RF24 radio) {
   radio.begin();

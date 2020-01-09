@@ -8,14 +8,14 @@ bool relayState[2];
 #define RELAY2 4
 
 uint8_t LCD_READ_PIPE=1;
-#define DIRR_LCD_RALAY 00003
-#define DIRR_RALAY_LCD 01003
+#define DIR_LCD_RALAY 00003
+#define DIR_RALAY_LCD 01003
 
 RF24 radio(9, 10); // CE, CSN
 
 void setupRadioAddresses(RF24 radio) {
-  radio.openReadingPipe(LCD_READ_PIPE, DIRR_LCD_RALAY);
-  radio.openWritingPipe(DIRR_RALAY_LCD);
+  radio.openReadingPipe(LCD_READ_PIPE, DIR_LCD_RALAY);
+  radio.openWritingPipe(DIR_RALAY_LCD);
 }
 void setupRadio(RF24 radio) {
   radio.begin();
@@ -28,7 +28,7 @@ void setupRadio(RF24 radio) {
 }
 void getRelayStatus(RF24 radio) {
   radio.stopListening();
-  radio.openWritingPipe(DIRR_RALAY_LCD);
+  radio.openWritingPipe(DIR_RALAY_LCD);
   radio.write("GET", 3);
   radio.startListening();
 }

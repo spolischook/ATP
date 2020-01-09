@@ -1,9 +1,9 @@
-## Модуль з 2 релле
+## Виконавчий модуль з двома релле
 
 EasyEDA project - 
 https://easyeda.com/spolischook/nrf24l01-arduinonano_termistor
 
-### Схема
+### Схема електрична принципова
 
 ![схема підключення](doc/images/Schematic_NRF24L01+ArduinoNano_2raly_NRF24L01+ArduinoNano_relay.png)
 
@@ -17,12 +17,12 @@ https://easyeda.com/spolischook/nrf24l01-arduinonano_termistor
 |4  |10uF         |C2                 |1       |
 |5  |button6\*6\*8.5|KEY1,KEY2          |2       |
 
-### PCB
+### Друкована плата (PCB)
 
 ![PCB top](doc/images/PCB_top.png)
 ![PCB top](doc/images/PCB_bottom.png)
 
-### Програма
+### Програмне забезпечення
 
 [Программа для перевірки модуля](src/main.cpp).
 

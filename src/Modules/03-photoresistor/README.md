@@ -1,9 +1,9 @@
-## Фоторезистивний модуль + сирена
+## Модуль контролю освітлення + сирена
 
 EasyEDA project - 
 https://easyeda.com/spolischook/nrf24l01-arduino-nano-zoom-photoresistor
 
-### Схема
+### Схема електрична принципова
 
 ![schema](doc/images/Schematic_NRF24L01+arduinoNano_zoom_photoresistor.png)
 
@@ -21,8 +21,10 @@ https://easyeda.com/spolischook/nrf24l01-arduino-nano-zoom-photoresistor
 |8  |1KΩ          |R2                 |1       |
 
 
-### PCB
+### Друкована плата (PCB)
 
 ![PCB top](doc/images/PCB_top.png)
 
 ![PCB top](doc/images/PCB_bottom.png)
+
+### Програмне забезпечення

@@ -3,7 +3,7 @@
 EasyEDA project - 
 https://easyeda.com/spolischook/nrf24l01-arduinonano-lcd
 
-### Схема
+### Схема електрична принципова
 
 ![schematic](doc/images/Schematic_NRF24L01+arduinoNano+LCD_NRF24L01+ArduinoNano_LCD.png)
 
@@ -20,11 +20,13 @@ https://easyeda.com/spolischook/nrf24l01-arduinonano-lcd
 |7  |100K         |R8,R9,R11,R12      |4       |
 |8  |1K           |R10,R14            |2       |
 
-### PCB
+### Друкована плата (PCB)
 
 ![PCB top](doc/images/PCB_top.png)
 
 ![PCB top](doc/images/PCB_bottom.png)
+
+### Програмне забезпечення
 
 ### Дефекти
 

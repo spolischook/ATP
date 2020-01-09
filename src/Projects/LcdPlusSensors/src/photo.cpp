@@ -3,8 +3,8 @@
 #include <nRF24L01.h>
 #include <RF24.h>
 
-#define DIRR_LCD_PHOTO 00002
-#define DIRR_PHOTO_LCD 01002
+#define DIR_LCD_PHOTO 00002
+#define DIR_PHOTO_LCD 01002
 
 static const uint8_t ZOOM = 3;
 static const uint8_t BUTTON = 4;
@@ -14,8 +14,8 @@ int light;
 unsigned long lastUpdate = 0;
 
 void setupRadioAddresses(RF24 radio) {
-  radio.openReadingPipe(1, DIRR_LCD_PHOTO);
-  radio.openWritingPipe(DIRR_PHOTO_LCD);
+  radio.openReadingPipe(1, DIR_LCD_PHOTO);
+  radio.openWritingPipe(DIR_PHOTO_LCD);
 }
 void setupRadio(RF24 radio) {
   radio.begin();

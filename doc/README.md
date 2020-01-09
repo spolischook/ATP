@@ -90,11 +90,11 @@ LNA та PA підключаються до антени через дуплек
 ![Схема модуля NRF24L01 з PA LNA](images/PA-LNA.png)
 
 Читайте про те, що таке PA LNA на StackOverflow - 
-https://electronics.stackexchange.com/questions/237267/what-is-a-pa-lna
+[https://electronics.stackexchange.com/questions/237267/what-is-a-pa-lna](https://electronics.stackexchange.com/questions/237267/what-is-a-pa-lna)
 
 ## Принцип роботи nRF24L01+
 
-### Канал 
+### Канал передачі данних (Pipes)
 
 Модуль приймача nRF24L01 передає та приймає дані на певній частоті (Канал або Channel). 
 Також для того, щоб два або більше модулів приймача могли спілкуватися один з одним, 
@@ -108,7 +108,7 @@ https://electronics.stackexchange.com/questions/237267/what-is-a-pa-lna
 що дає можливість мати мережу з 125 незалежно 
 працюючих мереж (6 Data Pipes +1 передавач) в одному місці.
 
-### nRF24L01+ MultiCeiver (TM) Network
+### nRF24L01+ MultiCeiver (TM) Network (Data Pipes)
 
 NRF24L01 + надає функцію під назвою Multiceiver. 
 Це абревіатура для декількох передавачів одного приймача. 
@@ -122,7 +122,67 @@ NRF24L01 + надає функцію під назвою Multiceiver.
 
 PRX нода, настроєна на пройом з 6 різних нод передавачів. 
 Приймач може перестати слухати будь-який час і виконувати функцію передавача,
-але в такому разі він зможе передавати лише в один pipe одночасно.
+але в такому разі він зможе передавати лише в один data pipe одночасно.
+
+Слід зазаначити, що канали нумеруються від 0 до 5. 
+Канал з 1 по 5 використовуються тільки для зчитування данних.
+Тоді як 0-й канал, буде використано як для передачі так і для прийому.  
+Піля завершення передачі по 0-му каналу і початку прийому (і навпаки),
+слід виставити відповідну адресу:
+
+```c
+#define DIR_FIRST_SECOND 00001
+#define DIR_SECOND_FIRST 00101
+
+RF24 radio(9, 10); // CE, CSN
+radio.openReadingPipe(0, DIR_SECOND_FIRST);
+radio.startListening();
+
+if (radio.available()) {
+    char message[8];
+    // зчитуємо 8 байт повідомлення у змінну message
+    radio.read(message, sizeof(message));
+}
+
+radio.stopListening();
+radio.openWritingPipe(DIR_FIRST_SECOND);
+radio.write("Hello AKIT", 10);
+```
+
+Якщо немає необхідності читати данні з 6 каналів одночасно,
+рекомендуємо відкривати канали для зчитування данних починаючи з 1,
+а нульовий канал лише для передачі.
+
+Щоб вести передачу по декількох каналах одночасно,
+слід відкрити відповідний канал перед передачою:
+
+```c
+#define DIR_FIRST_SECOND 00001
+#define DIR_FIRST_THIRD 00002
+#define DIR_SECOND_FIRST 00101
+#define DIR_THIRD_FIRST 00102
+#define READ_FIRST_PIPE 1
+#define READ_SECOND_PIPE 2
+uint8_t READ_CURRENT_PIPE;
+
+RF24 radio(9, 10); // CE, CSN
+radio.openReadingPipe(READ_FIRST_PIPE, DIR_SECOND_FIRST);
+radio.openReadingPipe(READ_SECOND_PIPE, DIR_THIRD_FIRST);
+radio.startListening();
+
+// При прослуховуванні декількох каналів, має значення номер каналу
+// за яким доступні данні 
+if (radio.available(&READ_CURRENT_PIPE)) {
+    if (READ_CURRENT_PIPE == READ_FIRST_PIPE) handleFirsPipe();
+    if (READ_CURRENT_PIPE == READ_SECOND_PIPE) handleSecondPipe();
+}
+
+radio.stopListening();
+radio.openWritingPipe(DIR_FIRST_SECOND);
+radio.write("Hello AKIT", 10);
+radio.openWritingPipe(DIR_FIRST_THIRD);
+radio.write("AKIT is the best", 16);
+```
 
 ### Enhanced ShockBurst протокол [link](https://devzone.nordicsemi.com/nordic/nordic-blog/b/blog/posts/intro-to-shockburstenhanced-shockburst)
 
@@ -153,9 +213,9 @@ Playload length,
 ### Транзакції (Automatic Packet Handling)
 
 
-![Позитивний сценарій](images/Rx-Tx-ok.jpg)
+![Успішна транзакція](images/Rx-Tx-ok.jpg)
 
-
+#### Успішна транзакція
 Першим є приклад позитивного сценарію.  
 Тут передавач починає зв'язок, надсилаючи пакет даних до приймача. 
 Після передачі всього пакету він чекає (приблизно 130 мкс) 
@@ -166,7 +226,7 @@ Playload length,
 
 ![Трансакція з втраченим пакетом даних](images/Rx-Tx-lost-data.jpg)
 
-Трансакція з втраченим пакетом даних.  
+#### Трансакція з втраченим пакетом даних.  
 Це негативний сценарій, коли необхідна повторна передача 
 через втрату переданого пакету. 
 Після передачі пакета передавач чекає отримання пакета ACK. 
@@ -177,7 +237,7 @@ Playload length,
 
 ![Трансакція з втраченим підтвердженням](images/Rx-Tx-lost-ACK.jpg)
 
-Трансакція з втраченим підтвердженням. 
+#### Трансакція з втраченим підтвердженням. 
 Це знову негативний сценарій, коли необхідна повторна передача через втрату пакета ACK. 
 Тут навіть якщо приймач отримує пакет з першої спроби, 
 через втрату пакета ACK, передавач вважає, що одержувач взагалі не отримав пакет. 
@@ -283,14 +343,14 @@ radio.setChannel(120);
 Для того щоб перевірити чи доступні данні для читання з модуля
 користуємось функцією `available`:
 ```c
-uint8_t n = 1;
-if (radio.available(&n)) {
+uint8_t dataPipe;
+if (radio.available(&dataPipe)) {
 radio.read(data, sizeof(data));
 }
 ```
 
-Функція приймає номер Pipe для читання, ящо в программі
-використовується лише один Pipe, аргумент може бути опущений.
+Функція приймає номер data pipe для читання, якщо в программі
+використовується лише один data Pipe, аргумент може бути опущений.
 
 Щоб передати данні, спочатку переключаємось в режим передачі,
 і не забуваємо після `write` повернути режим читання:

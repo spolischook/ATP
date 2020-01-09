@@ -1,9 +1,9 @@
-## Модуль з термістором
+## Модуль контролю освітлення
 
 EasyEDA project - 
 https://easyeda.com/spolischook/nrf24l01-arduinonano_termistor
 
-### Схема
+### Схема електрична принципова
 
 ![схема підключення](doc/images/Schematic_NRF24L01+arduinoNano_termistor.png)
 
@@ -23,13 +23,13 @@ https://easyeda.com/spolischook/nrf24l01-arduinonano_termistor
 |10 |220Ω         |R6,R2,R3,R7,R8     |5       |
 
 
-### PCB
+### Друкована плата (PCB)
 
 ![PCB top](doc/images/PCB_top.png)
 
 ![PCB top](doc/images/PCB_bottom.png)
 
-### Програма
+### Програмне забезпечення
 
 [Программа для перевірки модуля](src/main.cpp).
 

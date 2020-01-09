@@ -16,8 +16,8 @@ sed -i -e's+maxwidth{18cm}]{../images/nrf24l01-module-standard.jpg}+maxwidth{8cm
   "$WORING_DIR/../doc/latex/include/theory.tex"
 sed -i -e's+maxwidth{18cm}]{../images/nrf24l01-module-smd.jpg}+maxwidth{8cm}]{../images/nrf24l01-module-smd.jpg}+g' \
   "$WORING_DIR/../doc/latex/include/theory.tex"
-sed -i -e's+maxwidth{18cm}]{../images/power_consumption.jpg}+maxwidth{12cm}]{../images/power_consumption.jpg}+g' \
-  "$WORING_DIR/../doc/latex/include/theory.tex"
+#sed -i -e's+maxwidth{18cm}]{../images/power_consumption.jpg}+maxwidth{12cm}]{../images/power_consumption.jpg}+g' \
+#  "$WORING_DIR/../doc/latex/include/theory.tex"
 sed -i -e's+maxwidth{18cm}]{../images/NRF24L01-PA-LNA.jpg}+maxwidth{8cm}]{../images/NRF24L01-PA-LNA.jpg}+g' \
   "$WORING_DIR/../doc/latex/include/theory.tex"
 sed -i -e's+maxwidth{18cm}]{../images/multiceiver_data_pipes.jpg}+maxwidth{12cm}]{../images/multiceiver_data_pipes.jpg}+g' \
