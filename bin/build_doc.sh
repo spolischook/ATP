@@ -12,6 +12,8 @@ sed -i -e's+\[language=C\]+{C}+g' \
   "$WORING_DIR/../doc/latex/include/theory.tex"
 sed -i -e's+{lstlisting}+{minted}+g' \
   "$WORING_DIR/../doc/latex/include/theory.tex"
+sed -i -e's/begin{figure}/begin{figure}\[H\]/g' \
+  "$WORING_DIR/../doc/latex/include/theory.tex"
 sed -i -e's+maxwidth{18cm}]{../images/nrf24l01-module-standard.jpg}+maxwidth{8cm}]{../images/nrf24l01-module-standard.jpg}+g' \
   "$WORING_DIR/../doc/latex/include/theory.tex"
 sed -i -e's+maxwidth{18cm}]{../images/nrf24l01-module-smd.jpg}+maxwidth{8cm}]{../images/nrf24l01-module-smd.jpg}+g' \
