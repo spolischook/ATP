@@ -1,3 +1,0 @@
-radio.stopListening();
-radio.write("Hello AKIT", 10);
-radio.startListening();

@@ -2,6 +2,8 @@
 *.log
 *.toc
 *.out
+*.pyg
+*.synctex*
 *.pygtex
 *.pygstyle
 /include/*
