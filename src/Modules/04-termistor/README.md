@@ -1,4 +1,4 @@
-## Модуль контролю освітлення
+## Модуль контролю температури
 
 EasyEDA project - 
 https://easyeda.com/spolischook/nrf24l01-arduinonano_termistor
